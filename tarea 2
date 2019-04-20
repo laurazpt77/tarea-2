@@ -59,7 +59,7 @@ bool checkDate(Calendario x);
 	parametro int. Si la funcion recibe un numero negativo como parametro de entrada entonces se debe detener la ejecución de la funcion
     con un mensaje de despedida. La funcion se debe llamar printHelloMsg y no es necesario que tenga valor de retorno*/
 	
-	void printHelloMsg (string msg=":#v",int num=4);
+	void printHelloMsg (string msg=":hola",int num=1);
    
 /* 4. Recursion: Es una propiedad que tienen las funciones en diversos lenguajes de programacion, incluido C++ de poder invocarse a si mismas.
 	  Es decir, una funcion es recursiva cuando en el bloque de codigo que la compone existe una linea de codigo en la que ejecuta un llamado
@@ -145,29 +145,30 @@ int main()
 //solucion punto 1
 int checkMagicArray (int mag[8][8])
 
+
 {
-    int sum = 0;  
+    int diag1,diag2 = 0;  
+    
     for (int i = 0; i <8; i++) 
-        sum = sum +mag[i][i]; //diagonal1
-        cout<<"diag"<<sum<<endl;
-        
-    int sum1=0;
     {
-    for (int i = 7; i>= 0; i--) 
-        sum1 = sum1 +mag[i][i]; //diagonal2
-        cout<<"diag2"<<" "<<sum1<<endl;
-  
+        diag1+=mag[i][i]; 
+        diag2+=mag[8-1-i][i];
+        
     }
+  
+    
     for (int i = 0; i <8; i++)
     { 
           
-        int sumafila = 0;      
+        int fila = 0; 
+        
         for (int j = 0; j < 8; j++) 
-            sumafila +=mag[i][j]; 
-          cout<<"fila"<<sumafila<<endl;
+        
+            fila +=mag[i][j]; 
+          
         
       
-        if (sumafila != sum)  // comprueba si cada suma de fila es igual a la suma diagonal 
+        if (fila != diag1||fila!=diag2)  
             return false; 
     } 
   
@@ -175,18 +176,21 @@ int checkMagicArray (int mag[8][8])
     for (int i = 0; i < 8; i++)
     { 
           
-        int sumacolumna = 0;      
+        int columna = 0; 
+        
         for (int j = 0; j < 8; j++) 
-            sumacolumna +=mag[j][i]; 
-        cout<<"columna"<< sumacolumna<<endl;
+        
+            columna +=mag[j][i]; 
+        ;
      
     
-        if (sum != sumacolumna)  // comprueba si cada suma de columna es igual a la suma diagonal
+        if (diag1!=columna||diag2!=columna) 
         return false; 
     } 
   
     return true; 
 }
+
 
 //solucion punto 3
 void printHelloMsg (string msg,int num)

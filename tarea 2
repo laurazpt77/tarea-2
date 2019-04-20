@@ -51,6 +51,7 @@ struct Calendario{
   unsigned short int anio:7; //7 bits de una variable unsigned short
 };
 
+bool checkDate(Calendario x);
 
 /* 3.Diseñe una funcion que recibe 2 parametros de entrada, el primero es un string que debe imprimirse cierto numero de veces. 
     El numero de veces va estar indicado por el segundo parametro que debe ser de tipo int. La funcion debe contar con parametros
@@ -85,65 +86,7 @@ struct Calendario{
 	  despues del bloque de codigo de la funcion main.
 	  */
      int serieCuadrados (int n);
-	 
-// solucion punto 2 
-	int checkDate(Calendario x)
-   {
-	    if (x.dia<1||x.dia>31)
-	    {
-	        return 0;
-	    }
-	    if (x.mes<1||x.mes>12)
-	    {
-	        return 0;   
-	    }
-	    
-	    //para enero, marzo, mayo, julio, agosto, octubre y diciembre
-	     if(x.mes==1||x.mes==3||x.mes==5||x.mes==7||x.mes==8||x.mes==10||x.mes==12) 
-	     {
-              if (x.dia<1||x.dia>31)
-	            {
-	            return 0;
-	            }
-	     }
-	     
-	     
-        //Para Abril,Junio,Septiembre,Noviembre cuenta 30 dias
-          if(x.mes==4||x.mes==6||x.mes==9||x.mes==11) 
-             {
-              if (x.dia<1||x.dia>30)
-	            {
-	            return 0;
-	            }
-	         }
-	   
-         //Para febrero
-    if (x.mes == 2)
-	   {
-        if (x.dia<1||x.dia>29)
-            {
-            return 0;
-            }
-              
-     if (x.mes == 2)
-	   {
-     if(x.anio % 4 == 0 && (x.anio % 100 != 0 || x.anio % 400 == 0))
-            {
-            return 1;
-            }
-            else
-            {
-             return 0;
-            }
-        }
-	   }
-    
-	    if (x.anio<0||x.anio>127)
-	    {
-	        return 0;   
-	    }
-	    
-	}	  
+	  
 
 int main()
 {
@@ -264,18 +207,101 @@ void printHelloMsg (string msg,int num)
 
  }
  
+ //solucion punto2
+ bool checkDate(Calendario x)
+   {
+	    if (x.dia<=1||x.dia>=31)
+	    {
+	        return 0;
+	    }
+	    if (x.mes<=1||x.mes>=12)
+	    {
+	        return 0;   
+	    }
+	    
+	    //para enero, marzo, mayo, julio, agosto, octubre y diciembre
+	     if(x.mes==1||x.mes==3||x.mes==5||x.mes==7||x.mes==8||x.mes==10||x.mes==12) 
+	     {
+              if (x.dia<=1||x.dia>=31)
+	            {
+         return 0;
+     }
+     else
+     {
+         return 1;
+     }
+	     }
+	     
+	     
+              //Para Abril,Junio,Septiembre,Noviembre cuenta 30 dias
+          if(x.mes==4||x.mes==6||x.mes==9||x.mes==11) 
+             {
+              if (x.dia<=1||x.dia>=30)
+	           {
+         return 1;
+     }
+     else
+     {
+         return 0;
+     }
+	         }
+	    
+	   
+	    
+         
+            
+     
+    
+     if(x.anio % 4 == 0 && (x.anio % 100 != 0 || x.anio % 400 == 0))
+         {
+              if (x.mes == 2)
+              {
+              if (x.dia<=1||x.dia>=29)
+	   {
+         return 1;
+     }
+     else
+     {
+         return 0;
+     }
+     }
+	   }
+    
+
+	            
+	    if (x.anio<=0||x.anio>=127)
+	    {
+	        return 0;   
+	    }
+	    
+	}
+
  //solucion punto 4
  int serieCuadrados (int n)
 
 {
     int pot=0;
+    
+   
     pot=n*n;
+    
+    
+    
     if (n==1)
+    
     {
+    
     return (1);
+    
     }
+    
+    
     else    
+    
     {
         return (pot+serieCuadrados (n-1));
+        
     }
+    
+    
 }
